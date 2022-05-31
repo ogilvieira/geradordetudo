@@ -4,8 +4,8 @@ import Head from 'next/head'
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Error from 'next/error'
-import SiteBreadcrumbs from '@/components/sitebreadcrumbs';
-import db from '../../lib/db';
+import SiteBreadcrumbs from '@components/sitebreadcrumbs';
+import db from '@lib/db';
 
 interface Props {
   errorCode: number,

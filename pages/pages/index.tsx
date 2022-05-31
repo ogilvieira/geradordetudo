@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import SiteBreadcrumbs from '@/components/sitebreadcrumbs'
+import SiteBreadcrumbs from '@components/sitebreadcrumbs'
 import { Container, Box, Paper } from "@mui/material"
 import { Link as MUILink } from '@mui/material';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 
-import db from '../../lib/db';
+import db from '@lib/db';
 
 interface Props {
   subpages: subpages[]

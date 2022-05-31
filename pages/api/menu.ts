@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import db from '../../lib/db';
+import db from '@lib/db';
 
 type Menu = {
   title: string,

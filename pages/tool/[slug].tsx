@@ -4,12 +4,12 @@ import Head from 'next/head'
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Error from 'next/error'
-import SiteBreadcrumbs from '@/components/sitebreadcrumbs';
+import SiteBreadcrumbs from '@components/sitebreadcrumbs';
 import Alert from '@mui/material/Alert';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
-import db from '../../lib/db';
+import db from '@lib/db';
 import formatDate from 'utils/formatDate';
 import NoSsr from '@mui/base/NoSsr';
 import { BiCheckCircle } from 'react-icons/bi';
