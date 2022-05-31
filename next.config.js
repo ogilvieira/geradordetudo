@@ -3,8 +3,10 @@ const nextConfig = {
   reactStrictMode: false,
   images: {
     loader: 'akamai',
-    path: ''
+    path: '/'
   }
 }
 
-module.exports = nextConfig
+const { withSuperjson } = require('next-superjson')
+
+module.exports = withSuperjson()(nextConfig)

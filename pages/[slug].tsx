@@ -14,11 +14,11 @@ import formatDate from 'utils/formatDate';
 import NoSsr from '@mui/base/NoSsr';
 import { BiCheckCircle } from 'react-icons/bi';
 import {Adsense} from '@ctrl/react-adsense';
-
+import { FAQPage } from 'schema-dts';
+import { JsonLd } from "react-schemaorg";
 
 type StaticPageData = {
-  tool?: any,
-  questionsJsonp?: string  
+  tool?: any
 }
 
 interface Props {
@@ -63,16 +63,17 @@ const ToolPage: NextPage<Props> = ({ errorCode, pageData }) => {
 
             <NoSsr>
 
-              <Paper sx={{ p: 2, mt: 2}}>
+              <Box sx={{ mt: 2}}>
                 
+                <Paper sx={{ p: 2 }}>
                 <p>FERRAMENTA AQUI</p>
-                <Divider/>
-
+                </Paper>
+                
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px'}}>
                   <p>Essa ferramenta foi útil? </p>
                   <Button variant="contained" size="small" color="success" startIcon={<BiCheckCircle />}>Sim</Button>
                 </Box>
-              </Paper>
+              </Box>
             </NoSsr>
             
             {pageData.tool.tags && (<Box sx={{
@@ -113,7 +114,19 @@ const ToolPage: NextPage<Props> = ({ errorCode, pageData }) => {
                   <p>{item.content}</p>
                 </div>
               ))}
-              { pageData.questionsJsonp && (<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: pageData.questionsJsonp }}></script>)}
+              { pageData.tool.questions && (<JsonLd<FAQPage>
+                  item={{
+                    '@context': 'https://schema.org',
+                    '@type': 'FAQPage',
+                    'mainEntity': pageData.tool.questions.map((q: { title: string, content: string }) => ({
+                      "@type": "Question",
+                      "name": q.title,
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": q.content
+                      }}))
+                    }}
+                />)}
             </Paper>)}
 
           </Box>
@@ -160,29 +173,9 @@ export async function getStaticProps({ params } : StaticPathParams) {
         pageData: null
       }
     }
-  }  
+  }
 
-  // if( tool?.questions ) {
-  //   let jsonp = {
-  //     "@context": "https://schema.org",
-  //     "@type": "FAQPage",
-  //     "mainEntity": []
-  //   };
-
-  //   tool?.questions.forEach(q => {
-  //     jsonp.mainEntity.push({
-  //       "@type": "Question",
-  //       "name": q.title,
-  //       "acceptedAnswer": {
-  //         "@type": "Answer",
-  //         "text": q.content
-  //       }
-  //     });
-  //   });
-
-    // pageData.questionsJsonp = JSON.stringify(jsonp);
-  // }
-  pageData.tool = JSON.parse(JSON.stringify(tool))
+  pageData.tool = tool;
 
   return {
     props: {
