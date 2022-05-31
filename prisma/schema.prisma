@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:data.db"
+}
+
+model Pages {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  slug        String   @unique
+  title       String
+  description String   
+  content     String   
+}
+
+model Tool {
+  id              Int         @id @default(autoincrement())
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @default(now())
+  slug            String      @unique
+  title           String
+  description     String      
+  content         String      
+  seo_name        String
+  seo_description String      
+  active          Boolean
+  warning         String      
+  tags            String      
+  instructions    String      
+  questions       Question[]
+}
+
+model Question {
+  id      Int    @id @default(autoincrement())
+  title   String
+  content String 
+  toolId  Int
+  tool    Tool   @relation(fields: [toolId], references: [id])
+}
