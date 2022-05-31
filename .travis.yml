@@ -7,6 +7,8 @@ cache:
 script:
   - npm run build # Runs next build
   - touch out/.nojekyll # Creates a file telling Github not to build the project using Jekyll
+  - touch out/CNAME
+  - echo "geradordetudo.app.br" >> out/CNAME
 deploy:
   provider: pages # Informs Travis this is a deployment to GitHub Pages
   skip_cleanup: true # Prevents Travis from resetting the working directory made during the build
