@@ -41,12 +41,8 @@ const ToolPage: NextPage<Props> = ({ errorCode, pageData }) => {
 
         <SiteBreadcrumbs links={[
           {
-            title: "Ferramentas",
-            path: "/tool"
-          },
-          {
             title: pageData.tool.title,
-            path: `/tool/${pageData.tool.slug}`
+            path: `/${pageData.tool.slug}`
           }
         ]}/>
 

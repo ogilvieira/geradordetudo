@@ -3,34 +3,14 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '../src/theme';
 import Head from 'next/head'
-import Sidebar from "./sidebar";
 import Header from "./header";
 import { useRouter } from 'next/router';
-import { Box, Divider, Drawer, Toolbar } from '@mui/material';
+import { Box, Divider, Toolbar } from '@mui/material';
+import { Link as MUILink } from '@mui/material';
 
 function Layout({ children } : { children: any}) {
   const { asPath } = useRouter();
   const isHome = (asPath === '/');
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-  const drawerWidth = 250;
-
-  const [menuItems, setMenuItems] = useState<any[]>([]);
-
-  useEffect(() => {
-    fetchData();
-  }, [])
-
-  const fetchData = () => {
-    fetch('/api/menu')
-      .then((res) => res.json())
-      .then((data) => {
-        setMenuItems(data)
-      })
-  };
-
 
   return (
     <>
@@ -47,39 +27,15 @@ function Layout({ children } : { children: any}) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-          <Header isHome={isHome} isMenuOpen={mobileOpen} handleMenu={handleDrawerToggle}/>
-          <Box sx={{ display: 'flex' }}>
-            <Box component="nav" sx={{ width: { lg: drawerWidth }, flexShrink: { lg: 0 } }}>
-              <Drawer
-                variant="temporary"
-                open={mobileOpen}
-                onClose={handleDrawerToggle}
-                ModalProps={{
-                  keepMounted: true
-                }}
-                sx={{
-                  display: { xs: 'block', lg: 'none' },
-                  '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                }}
-              >
-              <Sidebar clickLink={handleDrawerToggle} menuItems={menuItems} />
-              </Drawer>
-              <Drawer
-                open
-                variant="permanent"
-                sx={{
-                  display: { xs: 'none', lg: 'block' },
-                  '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                }}
-                >
-                <Sidebar clickLink={() => {}} menuItems={menuItems} />
-                </Drawer>
-            </Box>
-            <Box component="main" sx={{ flexGrow: 1, width: { lg: `calc(100% - ${drawerWidth}px)` } }}>
+          <Header isHome={isHome}/>
+          <Box>
+            <Box component="main">
               <Toolbar/>
               {children}
               <Divider sx={{mt: 5}}/>
-              <Box sx={{p: 2, display: 'flex', justifyContent: 'center'}}>Gil Vieira &copy; { new Date().getFullYear()}</Box>
+              <Box sx={{p: 2, display: 'flex', justifyContent: 'center'}}>
+                Gil Vieira &copy; { new Date().getFullYear()}{' - '}<MUILink color="secondary" href="/pages/termos-de-uso">Termos de Uso</MUILink>{' - '}<MUILink color="secondary" href="/pages/politica-de-privacidade">Politica de Privacidade</MUILink>
+              </Box>
             </Box>
           </Box>
       </ThemeProvider>

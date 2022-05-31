@@ -9,7 +9,7 @@ function SiteBreadcrumbs(prop: { links: BreadcrumbLink[] }) {
   return (<>
   <Breadcrumbs sx={{ p: 2 }} maxItems={3} aria-label="breadcrumb">
     <Link href="/" passHref>
-      <MUILink underline="hover" color="primary">
+      <MUILink underline="hover" color="secondary">
         <BiHome/>
       </MUILink>
     </Link>
