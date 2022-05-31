@@ -17,3 +17,4 @@ deploy:
     # If you're using a different branch name, add it here
     all_branches: true
     condition: $TRAVIS_BRANCH =~ ^(master|main)$
+    fqdn: geradordetudo.app.br
