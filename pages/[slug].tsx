@@ -6,7 +6,6 @@ import Paper from '@mui/material/Paper';
 import Error from 'next/error'
 import SiteBreadcrumbs from '@components/sitebreadcrumbs';
 import Alert from '@mui/material/Alert';
-import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import db from '@lib/db';
@@ -16,6 +15,12 @@ import { BiCheckCircle } from 'react-icons/bi';
 import {Adsense} from '@ctrl/react-adsense';
 import { FAQPage } from 'schema-dts';
 import { JsonLd } from "react-schemaorg";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ToolsLoader from '@components/toolsLoader';
 
 type StaticPageData = {
   tool?: any
@@ -51,24 +56,11 @@ const ToolPage: NextPage<Props> = ({ errorCode, pageData }) => {
             <h1>{pageData.tool.title}</h1>
             <small>Última atualização: {formatDate(new Date(pageData.tool.updatedAt), 'DD/MM/YYYY HH:mm')}</small>
 
-
-            <Adsense
-                key={'currentPath'}
-                client='ca-pub-5396947550532993'
-                slot='4037548675'
-                style={{ display: 'block' }}
-                layout='in-article'
-                format='fluid'
-              />
-
             <NoSsr>
-
               <Box sx={{ mt: 2}}>
-                
-                <Paper sx={{ p: 2 }}>
-                <p>FERRAMENTA AQUI</p>
-                </Paper>
-                
+                <ToolsLoader slug={pageData.tool.slug}/>
+              </Box>
+              <Box sx={{ mt: 2}}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px'}}>
                   <p>Essa ferramenta foi útil? </p>
                   <Button variant="contained" size="small" color="success" startIcon={<BiCheckCircle />}>Sim</Button>
@@ -90,29 +82,35 @@ const ToolPage: NextPage<Props> = ({ errorCode, pageData }) => {
             {pageData.tool.warning && (<Alert severity="warning" sx={{ mt: 2}}>{pageData.tool.warning}</Alert>)}
 
 
-            {pageData.tool.content && (<Paper elevation={0} sx={{ p: 2, mt: 2}}>
+            {pageData.tool.content && (<Box sx={{ p: 2, mt: 2}}>
               <h2>Sobre</h2>
-              <div><p>{pageData.tool.content}</p></div>
-            </Paper>)}
+              <Paper sx={{ p: 2}}>{pageData.tool.content}</Paper>
+            </Box>)}
 
-            {pageData.tool.instructions && (<Paper elevation={0} sx={{ p: 2, mt: 2}}>
+            {pageData.tool.instructions && (<Box sx={{ p: 2, mt: 2}}>
               <h2>Instruções</h2>
-              <div>
+              <Paper sx={{ p: 2 }} elevation={0}>
                 <ul>
                 {pageData.tool.instructions.split('; ').map((item: string, index: number) => (
                   <li key={index}><p>{item}</p></li>
                 ))}
                 </ul>
-              </div>
-            </Paper>)}
+              </Paper>
+            </Box>)}
 
-            {pageData.tool.questions && pageData.tool.questions.length > 0 && (<Paper elevation={0} sx={{ p: 2, mt: 2}}>
+            {pageData.tool.questions && pageData.tool.questions.length > 0 && (<Box sx={{ p: 2, mt: 2}}>
               <h2>Perguntas de {pageData?.tool?.title}</h2>
               {pageData.tool.questions.map((item: any, index: number) => (
-                <div key={index}>
-                  <h3>{item.title}</h3>
-                  <p>{item.content}</p>
-                </div>
+                <Accordion key={index}>
+                  <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography><strong>{item.title}</strong></Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                    {item.content}
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
               ))}
               { pageData.tool.questions && (<JsonLd<FAQPage>
                   item={{
@@ -127,7 +125,7 @@ const ToolPage: NextPage<Props> = ({ errorCode, pageData }) => {
                       }}))
                     }}
                 />)}
-            </Paper>)}
+            </Box>)}
 
           </Box>
         </Container>

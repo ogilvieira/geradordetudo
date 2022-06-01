@@ -9,7 +9,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { useState } from 'react';
+import Alert from '@mui/material/Alert';
+import { useEffect, useState } from 'react';
 
 import db from '@lib/db';
 
@@ -26,6 +27,12 @@ type subpages = {
 const Page: NextPage<Props> = ({ subpages }) => {
 
   const [terms, setTerms] = useState('');
+  const [filtered, setFiltered] = useState(subpages);
+
+  useEffect(() => {
+    const filtered = subpages.filter(a => !!a.title.match(new RegExp(terms, 'gi')) || !!a.description.match(new RegExp(terms, 'gi')) );
+    setFiltered(filtered);
+  }, [terms])
 
   return (
     <>
@@ -42,15 +49,15 @@ const Page: NextPage<Props> = ({ subpages }) => {
               }} />
             </Grid>
 
-            {subpages && subpages.filter(a => !!a.title.match(new RegExp(terms, 'gi')) || !!a.description.match(new RegExp(terms, 'gi')) ).map( (subpage) => (
+            {filtered && filtered.map( (subpage) => (
               <Grid item xs={12} key={`tool-${subpage.slug}`}>
                 <Link href={`/${subpage.slug}`} passHref>
                   <MUILink color="primary" underline="none">
-                    <Card sx={{ display: 'flex' }}>
-                      <CardMedia sx={{ width: 180, height: 180 }}>
+                    <Card sx={{ display: {xs: 'block', sm: 'flex' }}}>
+                      <CardMedia sx={{ width: { xs: 'auto', sm: 180 }, height: { xs: 'auto', sm: 180 } }}>
                         <Image src="/fallback.jpg" width="1080" height="1080"/>
                       </CardMedia>
-                      <CardContent sx={{ width: `calc(100% - 180px)`  }}>
+                      <CardContent sx={{ width: {xs: '100%', sm: `calc(100% - 180px)`}}}>
                         <Typography gutterBottom variant="h5" component="div">
                           {subpage.title}
                         </Typography>
@@ -64,6 +71,8 @@ const Page: NextPage<Props> = ({ subpages }) => {
                 </Link>
               </Grid>
             ))}
+
+            {!filtered.length && <Grid item xs={12}><Alert severity="warning" sx={{ mt: 2}}>Nenhum item encontrado...</Alert></Grid>}
 
           </Grid>
         </Box>

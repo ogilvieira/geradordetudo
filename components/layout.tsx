@@ -7,6 +7,7 @@ import Header from "./header";
 import { useRouter } from 'next/router';
 import { Box, Divider, Toolbar } from '@mui/material';
 import { Link as MUILink } from '@mui/material';
+import Link from 'next/link';
 
 function Layout({ children } : { children: any}) {
   const { asPath } = useRouter();
@@ -32,12 +33,17 @@ function Layout({ children } : { children: any}) {
             <Box component="main">
               <Toolbar/>
               {children}
-              <Divider sx={{mt: 5}}/>
-              <Box sx={{p: 2, display: 'flex', justifyContent: 'center'}}>
-                Gil Vieira &copy; { new Date().getFullYear()}{' - '}<MUILink color="secondary" href="/pages/termos-de-uso">Termos de Uso</MUILink>{' - '}<MUILink color="secondary" href="/pages/politica-de-privacidade">Politica de Privacidade</MUILink>
-              </Box>
             </Box>
           </Box>
+          <footer className="sticky bottom-0">
+            <Box sx={{pt: 2, display: 'flex', justifyContent: 'center'}}>
+              <span>Gerador de Tudo &copy; { new Date().getFullYear()}</span>
+            </Box>
+            <Box sx={{pb: 2, display: 'flex', justifyContent: 'center', gap: '8px'}}>
+              <Link passHref href="/pages/termos-de-uso"><MUILink color="secondary">Termos de Uso</MUILink></Link>
+              <Link passHref href="/pages/politica-de-privacidade"><MUILink color="secondary">Politica de Privacidade</MUILink></Link>
+            </Box>
+          </footer>
       </ThemeProvider>
     </>
   )
