@@ -103,5 +103,6 @@ hr {
 
 ins {
   background-color: rgba(0,0,0,.1);
-  margin: 16px auto;
+  margin: 0 auto;
+  text-align: center;
 }

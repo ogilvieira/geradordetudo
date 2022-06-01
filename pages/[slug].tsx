@@ -9,10 +9,8 @@ import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import db from '@lib/db';
-import formatDate from 'utils/formatDate';
-import NoSsr from '@mui/base/NoSsr';
 import { BiCheckCircle } from 'react-icons/bi';
-import {Adsense} from '@ctrl/react-adsense';
+// import {Adsense} from '@ctrl/react-adsense';
 import { FAQPage } from 'schema-dts';
 import { JsonLd } from "react-schemaorg";
 import Accordion from '@mui/material/Accordion';
@@ -51,22 +49,20 @@ const ToolPage: NextPage<Props> = ({ errorCode, pageData }) => {
           }
         ]}/>
 
+
         <Container>
           <Box>
             <h1>{pageData.tool.title}</h1>
-            <small>Última atualização: {formatDate(new Date(pageData.tool.updatedAt), 'DD/MM/YYYY HH:mm')}</small>
 
-            <NoSsr>
-              <Box sx={{ mt: 2}}>
-                <ToolsLoader slug={pageData.tool.slug}/>
+            <Box sx={{ mt: 2}}>
+              <ToolsLoader slug={pageData.tool.slug}/>
+            </Box>
+            <Box sx={{ mt: 2}}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px'}}>
+                <p>Essa ferramenta foi útil? </p>
+                <Button variant="contained" size="small" color="success" startIcon={<BiCheckCircle />}>Sim</Button>
               </Box>
-              <Box sx={{ mt: 2}}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px'}}>
-                  <p>Essa ferramenta foi útil? </p>
-                  <Button variant="contained" size="small" color="success" startIcon={<BiCheckCircle />}>Sim</Button>
-                </Box>
-              </Box>
-            </NoSsr>
+            </Box>
             
             {pageData.tool.tags && (<Box sx={{
               mt: 2,
@@ -82,12 +78,12 @@ const ToolPage: NextPage<Props> = ({ errorCode, pageData }) => {
             {pageData.tool.warning && (<Alert severity="warning" sx={{ mt: 2}}>{pageData.tool.warning}</Alert>)}
 
 
-            {pageData.tool.content && (<Box sx={{ p: 2, mt: 2}}>
+            {pageData.tool.content && (<Box sx={{ mt: 2}}>
               <h2>Sobre</h2>
               <Paper sx={{ p: 2}}>{pageData.tool.content}</Paper>
             </Box>)}
 
-            {pageData.tool.instructions && (<Box sx={{ p: 2, mt: 2}}>
+            {pageData.tool.instructions && (<Box sx={{ mt: 2}}>
               <h2>Instruções</h2>
               <Paper sx={{ p: 2 }} elevation={0}>
                 <ul>
@@ -98,7 +94,7 @@ const ToolPage: NextPage<Props> = ({ errorCode, pageData }) => {
               </Paper>
             </Box>)}
 
-            {pageData.tool.questions && pageData.tool.questions.length > 0 && (<Box sx={{ p: 2, mt: 2}}>
+            {pageData.tool.questions && pageData.tool.questions.length > 0 && (<Box sx={{ mt: 2}}>
               <h2>Perguntas de {pageData?.tool?.title}</h2>
               {pageData.tool.questions.map((item: any, index: number) => (
                 <Accordion key={index}>
