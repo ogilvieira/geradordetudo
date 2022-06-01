@@ -25,7 +25,6 @@ function Layout({ children } : { children: any}) {
         <meta property="og:site_name" content="Gerador de Tudo" />
         <meta property="og:locale" content="pt-br" />
         <meta property="og:image" content="/cover.jpg"/>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5396947550532993" crossOrigin="anonymous"></script>
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />

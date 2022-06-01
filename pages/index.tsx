@@ -37,7 +37,7 @@ const Page: NextPage<Props> = ({ subpages }) => {
   useEffect(() => {
     const filtered = subpages.filter(a => !!a.title.match(new RegExp(terms, 'gi')) || !!a.description.match(new RegExp(terms, 'gi')) );
     setFiltered(filtered);
-  }, [terms])
+  }, [terms, subpages])
 
   return (
     <>

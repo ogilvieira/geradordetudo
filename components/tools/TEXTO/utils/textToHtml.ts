@@ -30,7 +30,7 @@ const stringToHtml = (str: string, convertChar: boolean = false) => {
   return convertChar ? htmlCharConvert(str) : str;
 }
 
-export default (text: string, encode:boolean = false, tabSize:number = 2, useSpace:boolean = false) => {
+const textToHtml = (text: string, encode:boolean = false, tabSize:number = 2, useSpace:boolean = false) => {
   let textArr: string[] = text.split('\n').filter(a => !!a.length);
 
   textArr = textArr.map( a => stringToHtml(a, encode));
@@ -40,3 +40,5 @@ export default (text: string, encode:boolean = false, tabSize:number = 2, useSpa
 
   return res;
 }
+
+export default textToHtml;

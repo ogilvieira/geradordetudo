@@ -78,7 +78,7 @@ export const unmaskCPF = (v: string) => {
   return v.replace(/\D/g, '');
 }
 
-export default (masked: boolean = false) => {
+ const generateCPF = (masked: boolean = false) => {
   const n1 = randomNum(),
         n2 = randomNum(),
         n3 = randomNum(),
@@ -88,3 +88,5 @@ export default (masked: boolean = false) => {
 
   return masked ? maskCPF(res) : res;
 }
+
+export default generateCPF;

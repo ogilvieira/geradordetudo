@@ -108,7 +108,7 @@ export const unmaskCNPJ = (v: string) => {
   return v.replace(/\D/g, '');
 }
 
-export default (masked: boolean = false) => {
+const generateCNPJ = (masked: boolean = false) => {
   const lstNumbers = createListNumber()
   lstNumbers.push(calculateDigitCnpj(lstNumbers))
 
@@ -116,3 +116,5 @@ export default (masked: boolean = false) => {
 
   return masked ? maskCNPJ(res) : res;
 }
+
+export default generateCNPJ;
