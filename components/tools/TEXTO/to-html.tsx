@@ -27,7 +27,6 @@ function Tool() {
 
   useEffect(() => {
     if( showResult ){
-      console.log('effect')
       handleConverter();
     }
   }, [encode, tabSize, useSpace])

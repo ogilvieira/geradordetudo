@@ -62,7 +62,7 @@ const Page: NextPage<Props> = ({ subpages }) => {
                     <Card>
                       <Box sx={{ display: 'flex'}}>
                         <CardMedia sx={{ width: 100, height: 100 }}>
-                          <Image src={`/tool/${subpage.slug}.png`} alt={subpage.title} width="1080" height="1080"/>
+                          <Image src={`/tool/${subpage.slug}.jpg`} alt={subpage.title} width="100" height="100"/>
                         </CardMedia>
                         <CardContent sx={{ width: `calc(100% - 100px)`, display: 'flex', alignItems: 'center', pb: 0}}>
                           <Typography variant="body1" component="h2">

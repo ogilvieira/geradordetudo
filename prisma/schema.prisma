@@ -9,8 +9,6 @@ datasource db {
 
 model Pages {
   id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
   slug        String   @unique
   title       String
   description String   
@@ -19,8 +17,6 @@ model Pages {
 
 model Tool {
   id              Int         @id @default(autoincrement())
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @default(now())
   slug            String      @unique
   title           String
   description     String      

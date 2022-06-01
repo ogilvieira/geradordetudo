@@ -7,6 +7,6 @@ const nextConfig = {
   }
 }
 
-const { withSuperjson } = require('next-superjson')
+// const { withSuperjson } = require('next-superjson')
 
-module.exports = withSuperjson()(nextConfig)
+module.exports = nextConfig
