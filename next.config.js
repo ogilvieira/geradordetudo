@@ -3,7 +3,8 @@ const nextConfig = {
   reactStrictMode: false,
   images: {
     loader: 'akamai',
-    path: '/'
+    path: '/',
+    formats: ['image/avif', 'image/webp']
   }
 }
 
