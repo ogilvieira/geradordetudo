@@ -19,6 +19,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ToolsLoader from '@components/toolsLoader';
+import { NoSsr } from '@mui/material';
 
 type StaticPageData = {
   tool?: any
@@ -38,7 +39,7 @@ const ToolPage: NextPage<Props> = ({ errorCode, pageData }) => {
   return (<>
       {pageData && pageData.tool && (<div>
         <Head>
-          <title>{pageData.tool.seo_title || pageData.tool.title}</title>
+          <title>{pageData.tool.seo_name || pageData.tool.title}</title>
           <meta name="description" content={pageData.tool.seo_description || pageData.tool.description} />
         </Head>
 
@@ -54,9 +55,11 @@ const ToolPage: NextPage<Props> = ({ errorCode, pageData }) => {
           <Box>
             <h1>{pageData.tool.title}</h1>
 
-            <Box sx={{ mt: 2}}>
-              <ToolsLoader slug={pageData.tool.slug}/>
-            </Box>
+            <Paper sx={{ mt: 2, p: 2}} elevation={0}>
+              <NoSsr>
+                <ToolsLoader slug={pageData.tool.slug}/>
+              </NoSsr>
+            </Paper>
             <Box sx={{ mt: 2}}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px'}}>
                 <p>Essa ferramenta foi útil? </p>

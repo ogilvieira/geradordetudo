@@ -1,18 +1,19 @@
 import React from 'react'
 import Alert from "@mui/material/Alert";
 
-let GeradorCNPJ = React.lazy(() => import("./tools/gerador-cnpj"));
-
 type ToolMap = {
   [key: string]: React.ComponentType
 }
 
 const TOOL_MAP: ToolMap = {
-  'gerador-cnpj': GeradorCNPJ
+  'gerador-cpf': React.lazy(() => import("./tools/CPF/gerador")),
+  'validar-cpf': React.lazy(() => import("./tools/CPF/validador")),
+  'gerador-cnpj': React.lazy(() => import("./tools/CNPJ/gerador")),
+  'validar-cnpj': React.lazy(() => import("./tools/CNPJ/validador")),
+
 }
 
 function ToolsLoader({ slug } : {slug: string}) {
-  console.log(slug);
 
   let Component = TOOL_MAP[slug] || null;
 

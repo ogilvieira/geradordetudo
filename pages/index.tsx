@@ -55,7 +55,7 @@ const Page: NextPage<Props> = ({ subpages }) => {
                   <MUILink color="primary" underline="none">
                     <Card sx={{ display: {xs: 'block', sm: 'flex' }}}>
                       <CardMedia sx={{ width: { xs: 'auto', sm: 180 }, height: { xs: 'auto', sm: 180 } }}>
-                        <Image src="/fallback.jpg" width="1080" height="1080"/>
+                        <Image src={`/tool/${subpage.slug}.png`} width="1080" height="1080"/>
                       </CardMedia>
                       <CardContent sx={{ width: {xs: '100%', sm: `calc(100% - 180px)`}}}>
                         <Typography gutterBottom variant="h5" component="div">
@@ -82,7 +82,7 @@ const Page: NextPage<Props> = ({ subpages }) => {
 }
 
 export async function getStaticProps() {
-  const subpages = await db.tool.findMany({ select: { title: true, slug: true, description: true }});
+  const subpages = await db.tool.findMany({ select: { title: true, slug: true, description: true }, where: { active: true }, orderBy: { title: 'asc' }});
 
   return {
     props: { 
