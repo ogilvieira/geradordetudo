@@ -11,8 +11,8 @@ import Link from 'next/link';
 
 function Tool() {
   const router = useRouter();
-
-  const [cpf, setCPF] = useState(unmaskCPF(router.query?.cpf || '')); 
+  const queryCPF:string = (typeof router.query.cpf === 'string') ? router.query.cpf : '';
+  const [cpf, setCPF] = useState(unmaskCPF(queryCPF)); 
   const [valid, setValid] = useState(false);
 
   useEffect(() => {

@@ -11,8 +11,8 @@ import Link from 'next/link';
 
 function Tool() {
   const router = useRouter();
-
-  const [cnpj, setCNPJ] = useState(unmaskCNPJ(router.query?.cnpj || '')); 
+  const queryCNPJ:string = (typeof router.query.cnpj === 'string') ? router.query.cnpj : '';
+  const [cnpj, setCNPJ] = useState(unmaskCNPJ(queryCNPJ)); 
   const [valid, setValid] = useState(false);
 
   useEffect(() => {
