@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
@@ -26,15 +26,15 @@ function Tool() {
             setMasked(event?.target.checked);
           }} />} label="Com Máscara" />
         </FormGroup>
-        <Stack spacing={2} direction="row" sx={{mt: 2}}>
+        <Stack spacing={2} direction="row" sx={{mt: 2, mb: 2}}>
         <Button color="primary" variant="contained" onClick={() => setCNPJ(generateCNPJ())} disableElevation startIcon={<BiRefresh />}>Gerar cnpj</Button>
         <CopyToClipboard text={masked ? maskCNPJ(cnpj) : unmaskCNPJ(cnpj) }>
           <Button color="primary" variant="outlined" disabled={!cnpj} disableElevation startIcon={<BiCopy />}>Copiar</Button>
         </CopyToClipboard>
-        <Link href={`/validar-cnpj?cnpj=${cnpj}`} passHref>
-          <Button color="success" disabled={!cnpj} disableElevation startIcon={<BiCheckCircle />}>Validar</Button>
-        </Link>
       </Stack>
+      <Link href={`/validar-cnpj?cnpj=${cnpj}`} passHref>
+        <Button color="success" disabled={!cnpj} disableElevation startIcon={<BiCheckCircle />}>Validar</Button>
+      </Link>
     </Box>
   </>)
 };

@@ -16,8 +16,11 @@ function Tool() {
   const [valid, setValid] = useState(false);
 
   useEffect(() => {
-    setValid(checkCPF(cpf))
-  })
+    const checkValid = () => {
+      setValid(checkCPF(cpf))
+    };
+    checkValid();
+  }, [cpf])
 
   return (<>
     <Box sx={{maxWidth: 400, margin: '0 auto', padding: '30px 0'}}>

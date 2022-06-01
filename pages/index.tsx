@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Alert from '@mui/material/Alert';
 import { useEffect, useState } from 'react';
-
+import Head from 'next/head'
 import db from '@lib/db';
 
 interface Props {
@@ -25,6 +25,11 @@ type subpages = {
 }
 
 const Page: NextPage<Props> = ({ subpages }) => {
+
+  <Head>
+    <title>Gerador de Tudo</title>
+    <meta name="description" content="Ferramentas online gratuitas, geradores de cpf, conta bancária, pessoas, cnpj, cep, rg, validadores, encoders e muitas outras úteis para programadores." />
+  </Head>
 
   const [terms, setTerms] = useState('');
   const [filtered, setFiltered] = useState(subpages);
@@ -41,6 +46,7 @@ const Page: NextPage<Props> = ({ subpages }) => {
           <h2>
             Ferramentas do Gerador de Tudo
           </h2>
+          <p>Ferramentas online gratuitas, geradores de cpf, conta bancária, pessoas, cnpj, cep, rg, validadores, encoders e muitas outras úteis para programadores.</p>
 
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -50,22 +56,20 @@ const Page: NextPage<Props> = ({ subpages }) => {
             </Grid>
 
             {filtered && filtered.map( (subpage) => (
-              <Grid item xs={12} key={`tool-${subpage.slug}`}>
+              <Grid item xs={12} md={4} key={`tool-${subpage.slug}`}>
                 <Link href={`/${subpage.slug}`} passHref>
                   <MUILink color="primary" underline="none">
-                    <Card sx={{ display: {xs: 'block', sm: 'flex' }}}>
-                      <CardMedia sx={{ width: { xs: 'auto', sm: 180 }, height: { xs: 'auto', sm: 180 } }}>
-                        <Image src={`/tool/${subpage.slug}.png`} width="1080" height="1080"/>
-                      </CardMedia>
-                      <CardContent sx={{ width: {xs: '100%', sm: `calc(100% - 180px)`}}}>
-                        <Typography gutterBottom variant="h5" component="div">
-                          {subpage.title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {subpage.description}
-                        </Typography>
-                      </CardContent>
-
+                    <Card>
+                      <Box sx={{ display: 'flex'}}>
+                        <CardMedia sx={{ width: 100, height: 100 }}>
+                          <Image src={`/tool/${subpage.slug}.png`} alt={subpage.title} width="1080" height="1080"/>
+                        </CardMedia>
+                        <CardContent sx={{ width: `calc(100% - 100px)`, display: 'flex', alignItems: 'center', pb: 0}}>
+                          <Typography variant="body1" component="h2">
+                            {subpage.title}
+                          </Typography>
+                        </CardContent>
+                      </Box>
                     </Card>
                   </MUILink>
                 </Link>

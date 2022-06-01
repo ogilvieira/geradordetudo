@@ -16,8 +16,12 @@ function Tool() {
   const [valid, setValid] = useState(false);
 
   useEffect(() => {
-    setValid(checkCNPJ(cnpj))
-  })
+    const checkValid = () => {
+      setValid(checkCNPJ(cnpj))
+    };
+    checkValid();
+  }, [cnpj])
+
 
   return (<>
     <Box sx={{maxWidth: 400, margin: '0 auto', padding: '30px 0'}}>
