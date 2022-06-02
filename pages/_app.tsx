@@ -27,11 +27,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     <React.Fragment>
       <Script id="Adsense-id" 
         onError={(e) => { console.error("Script failed to load", e);}}
-        strategy="lazyOnload"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5396947550532993"
+        data-ad-client="ca-pub-5396947550532993"
+        strategy="beforeInteractive"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         crossOrigin="anonymous" />
-      <Script id="GTM-id" strategy="lazyOnload" src="https://www.googletagmanager.com/gtag/js?id=G-M88QS0CYD8" />
-      <Script id="GTM-datalayer-id" strategy="lazyOnload">
+      <Script id="GTM-id" strategy="beforeInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-M88QS0CYD8" />
+      <Script id="GTM-datalayer-id" strategy="beforeInteractive">
         {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
