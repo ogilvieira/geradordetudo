@@ -7,7 +7,7 @@
     "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "publish": "yarn build && git subtree push --prefix out origin gh-pages"
+    "publish": "yarn build && touch out/CNAME && echo \"geradordetudo.app.br\" >> out/CNAME && touch out/.nojekyll && git subtree push --prefix out origin gh-pages"
   },
   "postinstall": "prisma generate",
   "dependencies": {
