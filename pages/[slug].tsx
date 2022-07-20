@@ -19,7 +19,8 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ToolsLoader from '@components/toolsLoader';
-import { NoSsr } from '@mui/material';
+import NoSsr from '@mui/material/NoSsr';
+import Image from "next/image";
 
 type StaticPageData = {
   tool?: any
@@ -53,7 +54,10 @@ const ToolPage: NextPage<Props> = ({ errorCode, pageData }) => {
 
         <Container>
           <Box>
-            <h1>{pageData.tool.title}</h1>
+            <Box sx={{display: 'grid', gridTemplateColumns: '100px 1fr', alignItems: 'center', gap: '10px', mt: 2}}>
+              <Image src={`/tool/${pageData.tool.slug}.jpg`} alt={pageData.tool.title} width="100" height="100"/>
+              <h1 style={{ lineHeight: '1.2em', fontSize: '1.5em' }}>{pageData.tool.title}</h1>
+            </Box>
 
             <Paper sx={{ mt: 2, p: 2}} elevation={0}>
               <NoSsr>

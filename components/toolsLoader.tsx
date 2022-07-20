@@ -12,6 +12,7 @@ const TOOL_MAP: ToolMap = {
   'validar-cnpj': React.lazy(() => import("./tools/CNPJ/validador")),
   'conversor-texto-html': React.lazy(() => import("./tools/TEXTO/to-html")),
   'gerador-codiguin': React.lazy(() => import("./tools/FREEFIRE/codiguin")),
+  'spotify-ranking': React.lazy(() => import("./tools/SPOTIFY/ranking")),
 }
 
 function ToolsLoader({ slug } : {slug: string}) {
