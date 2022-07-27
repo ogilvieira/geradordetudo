@@ -61,7 +61,6 @@ function Graph({ token }: { token: string }) {
           { artists && artists.slice(0, 12).map( (artist: any, index) => (
             <div className={styles.artist} key={`artist-${index}`}>
               <div className={styles.artistRank}><span style={{ backgroundColor: colors[index] || 'white' }}>{index + 1}</span></div>
-              <div className={styles.artistImage}><img src={artist.image} width={'auto'} height={100} onLoad={() => addStep()} onError={() => addStep()}/></div>
               <div className={styles.artistName}>{artist.name}</div>
             </div>
             ))}

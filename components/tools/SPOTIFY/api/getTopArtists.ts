@@ -12,7 +12,7 @@ type Genre = {
 
 
 export default async (token: string) => {
-  return await fetch("https://api.spotify.com/v1/me/top/artists", {
+  return await fetch("https://api.spotify.com/v1/me/top/artists?time_range=short_term", {
     method: 'GET',
     headers: {
       "Authorization": `Bearer ${token}`

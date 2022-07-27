@@ -73,24 +73,20 @@
   font-weight: bold;
   text-align: center;
   color: white;
-  font-size: 32px;
+  font-size: 52px;
   padding: 0;
 }
 
 .artist {
   width: 100%;
   display: grid;
-  grid-template-columns: 30px 100px 1fr;
+  grid-template-columns: 30px 1fr;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   padding: 10px;
   box-sizing: border-box;
   border-radius: 10px;
-}
-
-.artistImage {
-  text-align: center;
 }
 
 .artistRank {
@@ -101,33 +97,19 @@
 .artistRank span {
   display: block;
   background-color: white;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   font-weight: bold;
   color: #292929;
   border-radius: 50%;
-  line-height: 30px;
+  line-height: 40px;
   overflow: hidden;
-}
-
-.artistImage {
-  background-color: black;
-  border-radius: 9px;
-  overflow: hidden;
-}
-
-.artistImage img {
-  display: block;
-  margin: 0 auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100px;
 }
 
 .artistName {
   font-weight: bold;
   color: white;
-  font-size: 22px;
+  font-size: 32px;
 }
 
 .genre {
@@ -136,7 +118,7 @@
   grid-template-columns: 30px 1fr;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   padding: 20px;
   border-radius: 10px;
   overflow: hidden;
@@ -150,19 +132,19 @@
 .genreName {
   font-weight: bold;
   color: white;
-  font-size: 20px;
+  font-size: 28px;
 }
 
 
 .genreRank span {
   display: block;
   background-color: white;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   font-weight: bold;
   color: #292929;
   border-radius: 50%;
-  line-height: 30px;
+  line-height: 40px;
   overflow: hidden;
 }
 
